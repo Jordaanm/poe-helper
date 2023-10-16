@@ -1,5 +1,5 @@
 {
-  "name": "yaronpoehelper",
+  "name": "Yaron PoE Helper",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,17 +11,26 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-query": "^3.39.3",
+    "react-router": "^6.16.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-helmet": "^6.1.7",
+    "@types/react-query": "^1.2.9",
+    "@types/react-router": "^5.1.20",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "sass": "^1.69.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }

@@ -1,35 +1,105 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { ReactNode } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.scss";
+import { Home } from "./pages/Home";
+import { Catalysts } from "./pages/Catalysts";
+import { Link } from "react-router-dom";
+import { Challenges } from "./pages/Challenges";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface PageDatum {
+  title: string;
+  path: string;
+  icon: string;
+  element: ReactNode;
 }
 
-export default App
+const pageData: PageDatum[] = [
+  {
+    title: 'Home',
+    path: '/',
+    icon: '',
+    element: <Home />
+  },
+  {
+    title: 'Catalysts',
+    path: '/catalysts',
+    icon: 'https://www.pathofexile.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0ZlcnRpbGVDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/4b4ca5d929/FertileCatalyst.png',
+    element: <Catalysts />
+  },
+  {
+    title: 'Challenges',
+    path: '/challenges',
+    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Challenge_Icon.svg/819px-Challenge_Icon.svg.png',
+    element: <Challenges />
+  },
+  {
+    title: 'Delirium',
+    path: '/delirium',
+    icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Delirium/DeliriumOrbScarabs.png?w=1&h=1&scale=1',
+    element: <Home />
+  },
+  {
+    title: 'Essences',
+    path: '/essences',
+    icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Woe7.png?scale=1&w=1&h=1',
+    element: <Home />
+  },
+  {
+    title: 'Oils',
+    path: '/oils',
+    icon: 'https://web.poecdn.com/image/blight/items/OpalescentOil.png?scale=1&w=1&h=1',
+    element: <Home />
+  },
+  {
+    title: 'Scarabs',
+    path: '/scarabs',
+    icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/GreaterScarabBreach.png?scale=1&scaleIndex=0&w=1&h=1',
+    element: <Home />
+  },
+]
+
+function App() {
+  const queryClient = new QueryClient();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            {pageData.map((page) => <Route key={page.title} path={page.path} element={page.element} />)}
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
+}
+
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout = (props: LayoutProps) => {
+  const { children } = props;
+  return (
+    <div className="page">
+      <menu className="side-menu">
+        <ul>
+          {pageData.map((page) => (
+            <li key={page.title} className="side-menu-item">
+              <Link to={page.path}>
+                <div className="icon">
+                  <img src={page.icon} alt={`${page.title} icon`} aria-hidden />
+                </div>
+                <div className="side-menu__title">{page.title}</div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </menu>
+      <main>{children}</main>
+    </div>
+  );
+};
+
+export default App;

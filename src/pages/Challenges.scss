@@ -1,0 +1,67 @@
+.challenge-list {
+  overflow-y: scroll;
+  max-height: 100%;
+}
+.challenge {
+  .name-row {
+    color: #e7b477;
+    display: flex;
+    gap: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 0.25rem;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('/achievement-background-header.png');
+    h2 {
+      flex: 1;
+    }
+
+    .icon {
+      color: red;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+  }
+
+  &[data-completed="true"] .name-row .icon {
+    color: #00d500;
+  }
+
+  .toggle {
+    background-image: url('https://www.pathofexile.com/protected/image/layout/button/button-collapse-normal.png?v=1693392558114&key=saCZuwatGGw-oAF5EFB9LA');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 3rem;
+    width: 3rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    &.open {
+      background-image: url('https://www.pathofexile.com/protected/image/layout/button/button-expand-normal.png?v=1693392558114&key=1ABXVZLxTFcAx6feFZyUjA'); 
+    }
+  }
+
+  .items {
+    padding: 1rem 2rem 1rem 5rem;
+    background: url('https://www.pathofexile.com/protected/image/profile/bg-challenge.png?v=1693392564246&key=Gzf5T2O-EyrCc5uBgxtpow');
+    &[data-isopen="false"] {
+      display: none;
+    }
+  }
+
+  .items-inner {
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 10%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.6) 90%, rgb(0, 0, 0) 100%);
+  }
+
+  .subchallenge {
+    font-family: 'FontinBold', sans-serif;
+    display: flex;
+    color: #e7b477;
+    gap: 1rem;
+    &[data-completed="true"] {
+      color: #00d500;
+    }
+  }
+}
