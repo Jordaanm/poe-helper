@@ -1,4 +1,5 @@
 import { Scarab, ScarabHierarchy, ScarabRank, UpgradePriceEfficiency } from "../types/scarabs";
+import { EfficiencyClassMap } from "../util/efficiency";
 import { ChaosOrbPrice } from "./ChaosOrbPrice";
 
 import './Scarab.scss';
@@ -24,12 +25,6 @@ interface ScarabDisplayProps {
   scarab: Scarab;
   rank: ScarabRank;
 }
-
-const EfficiencyClassMap: Record<UpgradePriceEfficiency, string> = {
-  'Equivalent': 'upgrade--equiv',
-  'Worth Upgrading': 'upgrade--worth',
-  'Not Worth Upgrading': 'upgrade--not-worth',
-};
 
 export const ScarabDisplay = (props: ScarabDisplayProps) => {
   const { scarab, rank } = props;

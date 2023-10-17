@@ -7,3 +7,10 @@ export const calcEfficiency = (item: PoeNinjaOverviewLine, nextItem: PoeNinjaOve
   if(ratio > 3) { return 'Worth Upgrading'; }
   return ratio === 3 ? 'Equivalent' : 'Not Worth Upgrading';
 }
+
+
+export const EfficiencyClassMap: Record<UpgradePriceEfficiency, string> = {
+  'Equivalent': 'upgrade--equiv',
+  'Worth Upgrading': 'upgrade--worth',
+  'Not Worth Upgrading': 'upgrade--not-worth',
+};

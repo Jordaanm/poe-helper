@@ -1,4 +1,5 @@
-import { Essence, EssenceHierarchy, UpgradePriceEfficiency } from '../types/essences';
+import { Essence, EssenceHierarchy } from '../types/essences';
+import { EfficiencyClassMap } from '../util/efficiency';
 import { ChaosOrbPrice } from './ChaosOrbPrice';
 import './EssenceGrid.scss';
 
@@ -107,12 +108,6 @@ export const SpecialEssenceDisplay = (props: SpecialEssenceDisplayProps) => {
     })}
     </div>
   )
-};
-
-const EfficiencyClassMap: Record<UpgradePriceEfficiency, string> = {
-  'Equivalent': 'upgrade--equiv',
-  'Worth Upgrading': 'upgrade--worth',
-  'Not Worth Upgrading': 'upgrade--not-worth',
 };
 
 export const EssenceCell = (props: {essence: Essence}) => {

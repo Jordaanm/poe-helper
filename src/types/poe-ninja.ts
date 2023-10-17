@@ -46,6 +46,7 @@ export interface PoeNinjaPriceResponse {
 }
 
 export interface PoeNinjaOverviewLine {
+  detailsId: string,
   id: number,
   name: string,
   icon: string, 
