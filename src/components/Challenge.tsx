@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChallengeDetail, SubchallengeDetail } from "../util/challenge-parse";
 
 interface ChallengeProps {
