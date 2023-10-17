@@ -5,8 +5,10 @@ import "./App.scss";
 import { Home } from "./pages/Home";
 import { Catalysts } from "./pages/Catalysts";
 import { Link } from "react-router-dom";
-import { Challenges } from "./pages/Challenges";
+import { ChallengesPage } from "./pages/Challenges";
 import { ScarabsPage } from "./pages/Scarabs";
+import { ApplicationSettingsProvider } from "./contexts/settings-context";
+import { SettingsPage } from "./pages/SettingsPage";
 
 interface PageDatum {
   title: string;
@@ -32,7 +34,7 @@ const pageData: PageDatum[] = [
     title: 'Challenges',
     path: '/challenges',
     icon: '/challenge.png',
-    element: <Challenges />
+    element: <ChallengesPage />
   },
   {
     title: 'Delirium',
@@ -58,20 +60,27 @@ const pageData: PageDatum[] = [
     icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/GreaterScarabBreach.png?scale=1&scaleIndex=0&w=1&h=1',
     element: <ScarabsPage />
   },
+  {
+    title: 'Settings',
+    path: '/settings',
+    icon: '/settings.png',
+    element: <SettingsPage />
+  }
 ]
 
 function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {pageData.map((page) => <Route key={page.title} path={page.path} element={page.element} />)}
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <ApplicationSettingsProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              {pageData.map((page) => <Route key={page.title} path={page.path} element={page.element} />)}
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </ApplicationSettingsProvider>
     </QueryClientProvider>
   );
 }
