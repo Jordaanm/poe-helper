@@ -186,7 +186,6 @@
   transform: translateX(100%);
   z-index: 1;
   background-color: rgba(0,0,0,0.8);
-  width: 20rem;
   display: none;
 }
 
@@ -196,3 +195,10 @@
     display: flex;
   }
 }
+
+.inverse .tooltip {
+  transform: translateX(-100%);
+  right: unset;
+  left: 0
+}
+

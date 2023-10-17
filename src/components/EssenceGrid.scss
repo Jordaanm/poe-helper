@@ -39,20 +39,6 @@
       background-color: rgba(0,0,0,0.8);
       font-size: 1.5em;
     }
-    .name {
-      position: absolute;
-      right: 0;
-      transform: translateX(100%);
-      z-index: 1;
-      background-color: rgba(0,0,0,0.8);
-      width: 20rem;
-      display: none;
-    }
-    &:hover {
-      .name {
-        display: flex;
-      }
-    }
   }
 }
 

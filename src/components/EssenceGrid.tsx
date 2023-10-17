@@ -88,7 +88,7 @@ export const EssenceHierarchyDisplay = (props: EssenceHierarchyDisplayProps) => 
   const list = buildHierarchyList(hierarchy, inverse);
 
   return (
-    <div className="essence-hierarchy">
+    <div className={`essence-hierarchy ${inverse ? 'inverse' : ''}`}>
       {list.map(ess => <EssenceCell essence={ess} key={ess.name} />)}
     </div>
   );
@@ -114,10 +114,12 @@ export const EssenceCell = (props: {essence: Essence}) => {
   const { essence } = props;
   const upgradeClass = EfficiencyClassMap[essence.upgradeEfficiency];
   return (
-    <div className={`essence-cell ${upgradeClass}`}>
+    <div className={`essence-cell ${upgradeClass} tooltip-host`}>
       <img src={essence.icon} alt={essence.name} />
-      <span className="name">{essence.name}</span>
-      <div className="top">
+      <div className="tooltip">
+        <span className="name">{essence.name}</span>
+      </div>
+      <div className="scrim">
         <ChaosOrbPrice price={essence.chaosValue} />
       </div>
     </div>
