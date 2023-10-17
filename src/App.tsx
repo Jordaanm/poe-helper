@@ -5,11 +5,13 @@ import "./App.scss";
 import { Home } from "./pages/Home";
 import { Catalysts } from "./pages/Catalysts";
 import { Link } from "react-router-dom";
-import { ChallengesPage } from "./pages/Challenges";
-import { ScarabsPage } from "./pages/Scarabs";
+import { ChallengesPage } from "./pages/ChallengesPage";
+import { ScarabsPage } from "./pages/ScarabsPage";
 import { ApplicationSettingsProvider } from "./contexts/settings-context";
 import { SettingsPage } from "./pages/SettingsPage";
 import { EssencesPage } from "./pages/EssencesPage";
+import { OilsPage } from "./pages/OilsPage";
+import { DeliriumPage } from "./pages/DeliriumPage";
 
 interface PageDatum {
   title: string;
@@ -18,7 +20,7 @@ interface PageDatum {
   element: ReactNode;
 }
 
-const pageData: PageDatum[] = [
+export const pageData: PageDatum[] = [
   {
     title: 'Home',
     path: '/',
@@ -41,7 +43,7 @@ const pageData: PageDatum[] = [
     title: 'Delirium',
     path: '/delirium',
     icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Delirium/DeliriumOrbScarabs.png?w=1&h=1&scale=1',
-    element: <Home />
+    element: <DeliriumPage />
   },
   {
     title: 'Essences',
@@ -53,7 +55,7 @@ const pageData: PageDatum[] = [
     title: 'Oils',
     path: '/oils',
     icon: 'https://web.poecdn.com/image/blight/items/OpalescentOil.png?scale=1&w=1&h=1',
-    element: <Home />
+    element: <OilsPage />
   },
   {
     title: 'Scarabs',
