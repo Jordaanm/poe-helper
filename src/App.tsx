@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import { Home } from "./pages/Home";
 import { Catalysts } from "./pages/Catalysts";
