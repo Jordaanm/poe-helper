@@ -24,7 +24,7 @@ export const pageData: PageDatum[] = [
   {
     title: 'Home',
     path: '/',
-    icon: '/hideout.png',
+    icon: 'hideout.png',
     element: <Home />
   },
   {
@@ -36,7 +36,7 @@ export const pageData: PageDatum[] = [
   {
     title: 'Challenges',
     path: '/challenges',
-    icon: '/challenge.png',
+    icon: 'challenge.png',
     element: <ChallengesPage />
   },
   {
@@ -66,7 +66,7 @@ export const pageData: PageDatum[] = [
   {
     title: 'Settings',
     path: '/settings',
-    icon: '/settings.png',
+    icon: 'settings.png',
     element: <SettingsPage />
   }
 ]
