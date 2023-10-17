@@ -5,6 +5,7 @@ import { proxyFetch } from '../util/cors';
 import { UpgradePriceEfficiency } from '../types/common';
 import { ChaosOrbPrice } from '../components/ChaosOrbPrice';
 import { EfficiencyClassMap, calcEfficiency } from '../util/efficiency';
+import { UpgradeLegend } from '../components/UpgradeLegend';
 
 const FetchOilsPrices = async(): Promise<PoeNinjaOverviewLine[]> => {
   const response = await proxyFetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=Oil');
@@ -93,6 +94,7 @@ export const OilsPage = () => {
           );
         })}
       </div>
+      <UpgradeLegend />
     </div>
   );
 }

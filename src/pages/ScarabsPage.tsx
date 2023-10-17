@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { ScarabHierarchyHeader, ScarabHierarchyRow } from "../components/ScarabHierarchy";
 import { Scarab, ScarabHierarchy, ScarabRank, ScarabType, UpgradePriceEfficiency } from "../types/scarabs";
 import { proxyFetch } from "../util/cors";
+import { UpgradeLegend } from "../components/UpgradeLegend";
 
 interface PoeNinjaOverviewLine {
   id: number,
@@ -113,7 +114,7 @@ export const ScarabsPage = () => {
   const rightSideScarabs = RightSideScarabs.map(type => scarabs.find(scarab => scarab.type === type)).filter(Boolean) as ScarabHierarchy[];
 
   return (
-    <>
+    <div className="page-content scarab-page">
       <h1>Scarabs</h1>
       {isLoading && 'Loading...'}
       <div className="scarab-grid-container">
@@ -126,6 +127,7 @@ export const ScarabsPage = () => {
           {rightSideScarabs.map(scarab => <ScarabHierarchyRow key={scarab.type} scarabHierarchy={scarab} />)}
         </div>
       </div>
-    </>
+      <UpgradeLegend />
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { Essence, EssenceHierarchy, EssenceRank, EssenceRanks, EssenceTypes, Upg
 import { useEffect, useState } from "react";
 import { EssenceGrid } from "../components/EssenceGrid";
 import { proxyFetch } from "../util/cors";
+import { UpgradeLegend } from "../components/UpgradeLegend";
 
 interface PoeNinjaOverviewLine {
   id: number,
@@ -119,7 +120,8 @@ export const EssencesPage = () => {
       {isLoading && 'Loading...'}
       <div className="essence-grid-wrapper">
         <EssenceGrid essences={essences} specialEssences={specialEssences} />
-      </div>
+      </div>      
+      <UpgradeLegend />
     </div>
   );
 }
