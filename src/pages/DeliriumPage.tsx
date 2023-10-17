@@ -3,9 +3,10 @@ import { ChaosOrbPrice } from "../components/ChaosOrbPrice";
 import { PoeNinjaOverviewLine } from "../types/poe-ninja";
 import "./DeliriumPage.scss";
 import { useState } from "react";
+import { proxyFetch } from "../util/cors";
 
 const FetchDeliriumPrices = async(): Promise<PoeNinjaOverviewLine[]> => {
-  const response = await fetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=DeliriumOrb');
+  const response = await proxyFetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=DeliriumOrb');
   const json = await response.json();
   return json?.lines || [] as PoeNinjaOverviewLine[];
 };

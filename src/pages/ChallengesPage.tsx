@@ -6,6 +6,7 @@ import './Challenges.scss';
 import { Challenge } from "../components/Challenge";
 import { ApplicationSettingsContext, SettingsContext } from "../contexts/settings-context";
 import { Link } from "react-router-dom";
+import { proxyFetch } from "../util/cors";
 
 const challengeUrl = 'https://www.pathofexile.com/account/view-profile/${username}/challenges';
 
@@ -15,7 +16,7 @@ const fetchChallenges = async (username: string): Promise<Document> => {
   console.log("Fetching Challenges for " + username);
   if(!username) { throw new Error("username required to fetch challenges"); }
   const url = challengeUrl.replace('${username}', username);
-  const response = await fetch(url);
+  const response = await proxyFetch(url);
 
   const text = await response.text();
   const parser = new DOMParser();

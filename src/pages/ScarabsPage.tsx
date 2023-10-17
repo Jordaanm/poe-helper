@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { ScarabHierarchyHeader, ScarabHierarchyRow } from "../components/ScarabHierarchy";
 import { Scarab, ScarabHierarchy, ScarabRank, ScarabType, UpgradePriceEfficiency } from "../types/scarabs";
+import { proxyFetch } from "../util/cors";
 
 interface PoeNinjaOverviewLine {
   id: number,
@@ -70,7 +71,7 @@ const buildScarabHierarchies = (scarabs?: PoeNinjaOverviewLine[]): ScarabHierarc
 }
 
 const FetchScarabPrices = async(): Promise<PoeNinjaOverviewLine[]> => {
-  const response = await fetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=Scarab');
+  const response = await proxyFetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=Scarab');
   const json = await response.json();
   return json?.lines || [] as PoeNinjaOverviewLine[];
 };

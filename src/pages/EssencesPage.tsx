@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { Essence, EssenceHierarchy, EssenceRank, EssenceRanks, EssenceTypes, UpgradePriceEfficiency } from "../types/essences";
 import { useEffect, useState } from "react";
 import { EssenceGrid } from "../components/EssenceGrid";
+import { proxyFetch } from "../util/cors";
 
 interface PoeNinjaOverviewLine {
   id: number,
@@ -92,7 +93,7 @@ const parseSpecialEssences = (essenceData?: PoeNinjaOverviewLine[]): Essence[] =
 }
 
 const FetchEssencePrices = async(): Promise<PoeNinjaOverviewLine[]> => {
-  const response = await fetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=Essence');
+  const response = await proxyFetch('https://poe.ninja/api/data/itemoverview?league=Ancestor&type=Essence');
   const json = await response.json();
   return json?.lines || [] as PoeNinjaOverviewLine[];
 };

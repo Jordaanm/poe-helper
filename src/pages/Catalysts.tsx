@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { PoeNinjaPriceResponse, PriceDetail } from "../types/poe-ninja";
 import { Catalyst } from "../components/Catalyst";
+import { proxyFetch } from "../util/cors";
 
 const FetchPoeNinjaPrices = async (): Promise<PoeNinjaPriceResponse> => {
-  const response = await fetch('https://poe.ninja/api/data/currencyoverview?league=Ancestor&type=Currency');
+  const response = await proxyFetch('https://poe.ninja/api/data/currencyoverview?league=Ancestor&type=Currency');
   const json = await response.json();
   return json as PoeNinjaPriceResponse;
 }
