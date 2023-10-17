@@ -3,9 +3,10 @@ import { ChallengeDetail, SubchallengeDetail } from "../util/challenge-parse";
 
 interface ChallengeProps {
   challenge: ChallengeDetail
+  index: number;
 }
 export const Challenge = (props: ChallengeProps) => {
-  const { challenge } = props;
+  const { challenge, index } = props;
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggle = () => setIsOpen(v => !v);
 
@@ -13,7 +14,7 @@ export const Challenge = (props: ChallengeProps) => {
     <div className="challenge col" data-completed={challenge.isCompleted}>
       <div className=" name-row row">
         <button className={`toggle ${isOpen ? 'open' : 'closed'}`} onClick={toggle}></button>
-        <h2>{challenge.name}</h2>
+        <h2>{challenge.name} ({index})</h2>
         <div className="completion">
           {challenge.completion}
         </div>

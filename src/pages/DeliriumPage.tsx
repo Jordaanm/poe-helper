@@ -42,10 +42,12 @@ export const DeliriumPage = () => {
       <div className="delirium-orb-list">
         {sortedDeliriumOrbs.map((orb: PoeNinjaOverviewLine) => (
           <div key={orb.id} className="delirium-orb">
-            <img
-              src={orb.icon}
-              alt={orb.name}
-            />
+            <div className="icon icon-cell">
+              <img
+                src={orb.icon}
+                alt={orb.name}
+              />
+            </div>
             <div className="price">
               <ChaosOrbPrice price={orb.chaosValue} />
             </div>                

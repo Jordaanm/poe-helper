@@ -11,6 +11,17 @@ import { proxyFetch } from "../util/cors";
 const challengeUrl = 'https://www.pathofexile.com/account/view-profile/${username}/challenges';
 
 type SortByOption = 'GGG' | 'Alphabetical';
+type FilterOption = 'All' | 'Completed' | 'Incomplete';
+
+const sortSubChallenge = (challenge: ChallengeDetail): ChallengeDetail => {
+  if(challenge.subchallenges) {
+    return {
+      ...challenge,
+      subchallenges: [...challenge.subchallenges].sort((a, b) => a.name.localeCompare(b.name))
+    };
+  }
+  return challenge;
+}
 
 const fetchChallenges = async (username: string): Promise<Document> => {
   if(!username) { throw new Error("username required to fetch challenges"); }
@@ -55,6 +66,7 @@ export const Challenges = (props: ChallengesProps) => {
 
   const [challenges, setChallenges] = useState<ChallengeDetail[]>([]);
   const [sortBy, setSortBy] = useState<SortByOption>('GGG');
+  const [filterBy, setFilterBy] = useState<FilterOption>('All');
 
   useEffect(() => {
     if (!data) return;
@@ -63,21 +75,37 @@ export const Challenges = (props: ChallengesProps) => {
     setChallenges(challenges);
   }, [data]);
 
-  const sortedChallenges = sortBy === 'Alphabetical' ? [...challenges].sort((a, b) => a.name.localeCompare(b.name)) : challenges;
+  const sortedChallenges = sortBy === 'Alphabetical' ? [...challenges].sort((a, b) => a.name.localeCompare(b.name)).map(sortSubChallenge) : challenges;
+  const filteredChallenges = filterBy === 'All' ? sortedChallenges : sortedChallenges.filter(x => x.isCompleted === (filterBy === 'Completed'));
+  const completedChallenges = challenges.filter(x => x.isCompleted).length;
 
   return (
     <div className="page-content challenges-page">
       <h1>Challenges</h1>
       {isLoading && 'Loading...'}
-      <div className="sort-by">
-        <label>Sort By:</label>
-        <select value={sortBy} onChange={e => setSortBy(e.target.value as SortByOption)}>
-          <option value="GGG">In-Game Order</option>
-          <option value="Alphabetical">Alphabetical</option>
-        </select>
+      <div className="row">
+        <div className="sort-by">
+          <label>Sort By: </label>
+          <select value={sortBy} onChange={e => setSortBy(e.target.value as SortByOption)}>
+            <option value="GGG">In-Game Order</option>
+            <option value="Alphabetical">Alphabetical</option>
+          </select>
+        </div>
+        <div className="filter-by">
+          <label>Filter By: </label>
+          <select value={filterBy} onChange={e => setFilterBy(e.target.value as FilterOption)}>
+            <option value="All">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Incomplete">Incomplete</option>
+          </select>
+        </div>
+      </div>
+      <div className="details">
+        <h2>{username}'s Challenges</h2>
+        <p className="complete-count">{completedChallenges}/{challenges.length} Completed</p>
       </div>
       <div className="challenge-list">
-        {sortedChallenges.map(x => <Challenge key={x.name} challenge={x} />)}
+        {filteredChallenges.map(challenge => <Challenge key={challenge.name} challenge={challenge} index={challenges.findIndex(c => c.name === challenge.name) + 1} />)}
       </div>
     </div>
   );

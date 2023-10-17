@@ -43,7 +43,6 @@ const mapOil = (line: PoeNinjaOverviewLine, allLines: PoeNinjaOverviewLine[]): O
 
   const efficiency = calcEfficiency(line, nextOil);
 
-  console.log("line", line);
   return {
     id: line.detailsId,
     name: line.name,
@@ -75,8 +74,8 @@ export const OilsPage = () => {
         {sortedOils.map(oil => {
           const efficiencyClass = EfficiencyClassMap[oil.upgradeEfficiency];
           return (
-            <div className={`oil ${efficiencyClass}`} key={oil.id}>
-              <div className="icon">
+            <div className={`oil`} key={oil.id}>
+              <div className={`icon icon-cell ${efficiencyClass}`}>
                 <img
                   src={oil.icon}
                   alt={oil.name}

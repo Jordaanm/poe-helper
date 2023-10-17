@@ -75,6 +75,27 @@ const FetchScarabPrices = async(): Promise<PoeNinjaOverviewLine[]> => {
   return json?.lines || [] as PoeNinjaOverviewLine[];
 };
 
+const LeftSideScarabs: ScarabType[] = [
+  'Bestiary',
+  'Reliquary',
+  'Torment',
+  'Sulphite',
+  'Metamorph',
+  'Legion',
+  'Ambush',
+  'Blight'
+];
+
+const RightSideScarabs: ScarabType[] = [
+  'Shaper',
+  'Expedition',
+  'Cartography',
+  'Harbinger',
+  'Elder',
+  'Divination',
+  'Breach',
+  'Abyss'
+]
 export const ScarabsPage = () => {
   const { data, isLoading } = useQuery({
     queryFn: FetchScarabPrices,
@@ -88,13 +109,22 @@ export const ScarabsPage = () => {
     setScarabs(scarabHierarchies);
   }, [data]);
 
+  const leftSideScarabs = LeftSideScarabs.map(type => scarabs.find(scarab => scarab.type === type)).filter(Boolean) as ScarabHierarchy[];
+  const rightSideScarabs = RightSideScarabs.map(type => scarabs.find(scarab => scarab.type === type)).filter(Boolean) as ScarabHierarchy[];
+
   return (
     <>
       <h1>Scarabs</h1>
       {isLoading && 'Loading...'}
-      <div className="scarab-grid">
+      <div className="scarab-grid-container">
+        <div className="scarab-grid">
+          <ScarabHierarchyHeader />
+          {leftSideScarabs.map(scarab => <ScarabHierarchyRow key={scarab.type} scarabHierarchy={scarab} />)}
+        </div>
+        <div className="scarab-grid">
         <ScarabHierarchyHeader />
-        {scarabs.map(scarab => <ScarabHierarchyRow key={scarab.type} scarabHierarchy={scarab} />)}
+          {rightSideScarabs.map(scarab => <ScarabHierarchyRow key={scarab.type} scarabHierarchy={scarab} />)}
+        </div>
       </div>
     </>
   );

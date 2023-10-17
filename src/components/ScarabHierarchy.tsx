@@ -1,4 +1,4 @@
-import { Scarab, ScarabHierarchy, ScarabRank, UpgradePriceEfficiency } from "../types/scarabs";
+import { Scarab, ScarabHierarchy, ScarabRank } from "../types/scarabs";
 import { EfficiencyClassMap } from "../util/efficiency";
 import { ChaosOrbPrice } from "./ChaosOrbPrice";
 
@@ -30,14 +30,18 @@ export const ScarabDisplay = (props: ScarabDisplayProps) => {
   const { scarab, rank } = props;
   const upgradeClass = EfficiencyClassMap[scarab.upgradeEfficiency];
   return (
-    <div className={`scarab ${rank.toLowerCase()} ${upgradeClass}`}>
-    <img
-      src={scarab.icon}
-      alt={scarab.name}
-    />
-    <div className="price">
-      <ChaosOrbPrice price={scarab.chaosValue} />
-    </div>
+    <div className={`scarab ${rank.toLowerCase()}`}>
+      <div className={`icon-cell ${upgradeClass} cell-small`}>
+        <img
+          src={scarab.icon}
+          alt={scarab.name}
+        />
+        <div className="scrim">
+          <div className="price">
+            <ChaosOrbPrice price={scarab.chaosValue} />
+          </div>
+        </div>
+      </div>
   </div>
   )
 }
