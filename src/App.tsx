@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import { Home } from "./pages/Home";
 import { Catalysts } from "./pages/Catalysts";
@@ -76,14 +76,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ApplicationSettingsProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Layout>
             <Routes>
               {pageData.map((page) => <Route key={page.title} path={page.path} element={page.element} />)}
               {pageData.map((page) => <Route key={page.title} path={`/poe-helper/${page.path}`} element={page.element} />)}
             </Routes>
           </Layout>
-        </BrowserRouter>
+        </HashRouter>
       </ApplicationSettingsProvider>
     </QueryClientProvider>
   );
@@ -101,7 +101,7 @@ const Layout = (props: LayoutProps) => {
         <ul>
           {pageData.map((page) => (
             <li key={page.title} className="side-menu-item">
-              <Link to={`/poe-helper/${page.path}`}>
+              <Link to={`${page.path}`}>
                 <div className="icon">
                   <img src={page.icon} alt={`${page.title} icon`} aria-hidden />
                 </div>
