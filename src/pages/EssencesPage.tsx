@@ -70,7 +70,6 @@ const buildEssenceHierarchies = (essenceData?: PoeNinjaOverviewLine[]): EssenceH
 
 const parseSpecialEssences = (essenceData?: PoeNinjaOverviewLine[]): Essence[] => {
   if(!essenceData) { return []; }
-  console.log("ED", essenceData);
 
   const mapToEssence = (essenceDatum: PoeNinjaOverviewLine): Essence | null => {
     if(!essenceDatum) { return null }

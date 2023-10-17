@@ -14,7 +14,6 @@ interface PoeNinjaOverviewLine {
 const calcEfficiency = (scarab: PoeNinjaOverviewLine, nextRankedScarab: PoeNinjaOverviewLine | null): UpgradePriceEfficiency => {
   if(!nextRankedScarab) { return 'Not Worth Upgrading'; }
   const ratio = nextRankedScarab.chaosValue / scarab.chaosValue;
-  console.log('calcEfficiency', scarab.name, nextRankedScarab.name, ratio);
   if(ratio > 3) { return 'Worth Upgrading'; }
   return ratio === 3 ? 'Equivalent' : 'Not Worth Upgrading';
 }

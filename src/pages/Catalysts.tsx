@@ -23,7 +23,6 @@ export const Catalysts = () => {
   const catalysts = data?.lines.filter((x: PriceDetail) => x.currencyTypeName.includes('Catalyst')) || [];
   const sortedCatalysts = sortBy === 'Alphabetical' ? [...catalysts].sort((a, b) => a.currencyTypeName.localeCompare(b.currencyTypeName)) : [...catalysts].sort((a, b) => b.chaosEquivalent - a.chaosEquivalent);
 
-  console.log("Cataltysts", catalysts);
   return (
     <>
       <h1>Catalysts</h1>

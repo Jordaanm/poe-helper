@@ -13,7 +13,6 @@ const challengeUrl = 'https://www.pathofexile.com/account/view-profile/${usernam
 type SortByOption = 'GGG' | 'Alphabetical';
 
 const fetchChallenges = async (username: string): Promise<Document> => {
-  console.log("Fetching Challenges for " + username);
   if(!username) { throw new Error("username required to fetch challenges"); }
   const url = challengeUrl.replace('${username}', username);
   const response = await proxyFetch(url);

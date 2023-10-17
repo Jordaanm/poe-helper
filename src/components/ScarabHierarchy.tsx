@@ -34,7 +34,6 @@ const EfficiencyClassMap: Record<UpgradePriceEfficiency, string> = {
 export const ScarabDisplay = (props: ScarabDisplayProps) => {
   const { scarab, rank } = props;
   const upgradeClass = EfficiencyClassMap[scarab.upgradeEfficiency];
-  console.log("SCARAB", rank, scarab, upgradeClass, EfficiencyClassMap);
   return (
     <div className={`scarab ${rank.toLowerCase()} ${upgradeClass}`}>
     <img
