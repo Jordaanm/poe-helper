@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import App from "../App";
 
 const LOCAL_STORAGE_KEY = 'poe-helper-settings';
 

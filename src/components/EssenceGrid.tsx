@@ -1,4 +1,3 @@
-import React from 'react';
 import { Essence, EssenceHierarchy, UpgradePriceEfficiency } from '../types/essences';
 import { ChaosOrbPrice } from './ChaosOrbPrice';
 import './EssenceGrid.scss';

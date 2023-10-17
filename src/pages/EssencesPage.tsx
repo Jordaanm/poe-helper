@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Essence, EssenceHierarchy, EssenceRank, EssenceRanks, EssenceType, EssenceTypes, UpgradePriceEfficiency } from "../types/essences";
+import { Essence, EssenceHierarchy, EssenceRank, EssenceRanks, EssenceTypes, UpgradePriceEfficiency } from "../types/essences";
 import { useEffect, useState } from "react";
 import { EssenceGrid } from "../components/EssenceGrid";
 

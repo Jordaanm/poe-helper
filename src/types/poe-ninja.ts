@@ -39,3 +39,8 @@ export interface Pay {
   includes_secondary: boolean;
   listing_count: number;
 }
+
+export interface PoeNinjaPriceResponse {
+  lines: PriceDetail[];
+  currencyDetails: CurrencyDetail[];
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import { PriceDetail } from "../types/poe-ninja";
 import { ChaosOrbPrice } from "./ChaosOrbPrice";
 import './Catalyst.scss';
