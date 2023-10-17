@@ -9,6 +9,7 @@ import { ChallengesPage } from "./pages/Challenges";
 import { ScarabsPage } from "./pages/Scarabs";
 import { ApplicationSettingsProvider } from "./contexts/settings-context";
 import { SettingsPage } from "./pages/SettingsPage";
+import { EssencesPage } from "./pages/EssencesPage";
 
 interface PageDatum {
   title: string;
@@ -46,7 +47,7 @@ const pageData: PageDatum[] = [
     title: 'Essences',
     path: '/essences',
     icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Essence/Woe7.png?scale=1&w=1&h=1',
-    element: <Home />
+    element: <EssencesPage />
   },
   {
     title: 'Oils',
