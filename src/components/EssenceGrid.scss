@@ -1,0 +1,64 @@
+.essence-grid {
+  width: 72rem;
+  .essence-grid__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .essence-hierarchy {
+    display: flex;
+    flex-direction: row;
+  }
+  .essence-set {
+    display: flex;
+    flex-direction: row;
+  }
+  .essence-cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+    width: 6rem;
+    background-image: url('./essence-cell.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.upgrade--worth {
+      background-color: rgba(0, 213, 0, 0.8);
+    }
+    &.upgrade--equiv {
+      background-color: rgba(0, 213, 0, 0.4);
+    }
+    .top {
+      position: absolute;
+      bottom: 0rem;
+      left: 0.25rem;
+      right: 0.25rem;
+      background-color: rgba(0,0,0,0.8);
+      font-size: 1.5em;
+    }
+    .name {
+      position: absolute;
+      right: 0;
+      transform: translateX(100%);
+      z-index: 1;
+      background-color: rgba(0,0,0,0.8);
+      width: 20rem;
+      display: none;
+    }
+    &:hover {
+      .name {
+        display: flex;
+      }
+    }
+  }
+}
+
+.essence-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
