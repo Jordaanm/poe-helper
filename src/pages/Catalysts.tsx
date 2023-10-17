@@ -10,7 +10,34 @@ const FetchPoeNinjaPrices = async (): Promise<PoeNinjaPriceResponse> => {
   return json as PoeNinjaPriceResponse;
 }
 
-type SortByOption = 'Alphabetical' | 'Price';
+type SortByOption = 'Alphabetical' | 'Price' | 'In-Game Order';
+
+const catalystOrder = [
+  'abrasive-catalyst',
+  'tempering-catalyst',
+  'fertilizer-catalyst',
+  'unstable-catalyst',
+  'accelerating-catalyst',
+  'noxious-catalyst',
+  'turbulent-catalyst',
+  'imbued-catalyst',
+  'prismatic-catalyst',
+  'intrinsic-catalyst',
+];
+
+const sortCatalysts = (catalysts: PriceDetail[], sortBy: SortByOption): PriceDetail[] => {
+  if (sortBy === 'Alphabetical') { 
+    return [...catalysts].sort((a, b) => a.currencyTypeName.localeCompare(b.currencyTypeName));
+  } else if (sortBy === 'Price') {
+    return [...catalysts].sort((a, b) => b.chaosEquivalent - a.chaosEquivalent);
+  } else {
+    return [...catalysts].sort((a, b) => {
+      const aIndex = catalystOrder.indexOf(a.detailsId);
+      const bIndex = catalystOrder.indexOf(b.detailsId);
+      return aIndex - bIndex;
+    });
+  }
+};
 
 export const Catalysts = () => {
   const { data, isLoading } = useQuery({
@@ -18,10 +45,14 @@ export const Catalysts = () => {
     queryKey: ['poe-ninja']
   });
 
-  const [sortBy, setSortBy] = useState<SortByOption>('Price');
+  const [sortBy, setSortBy] = useState<SortByOption>('In-Game Order');
 
   const catalysts = data?.lines.filter((x: PriceDetail) => x.currencyTypeName.includes('Catalyst')) || [];
-  const sortedCatalysts = sortBy === 'Alphabetical' ? [...catalysts].sort((a, b) => a.currencyTypeName.localeCompare(b.currencyTypeName)) : [...catalysts].sort((a, b) => b.chaosEquivalent - a.chaosEquivalent);
+  const sortedCatalysts = sortCatalysts(catalysts, sortBy);
+  
+  const groupA = sortedCatalysts.slice(0, 6);
+  const groupB = sortedCatalysts.slice(6, 8);
+  const groupC = sortedCatalysts.slice(8, 10);
 
   return (
     <>
@@ -32,10 +63,17 @@ export const Catalysts = () => {
         <select value={sortBy} onChange={e => setSortBy(e.target.value as SortByOption)}>
           <option value="Price">Price</option>
           <option value="Alphabetical">Alphabetical</option>
+          <option value="In-Game Order">In-Game Order</option>
         </select>
       </div>
-      <div className="catalyst-list">
-        {sortedCatalysts.map(catalyst => <Catalyst key={catalyst.currencyTypeName} catalyst={catalyst} />)}
+      <div className="catalyst-list row">
+        {groupA.map(catalyst => <Catalyst key={catalyst.currencyTypeName} catalyst={catalyst} />)}
+      </div>
+      <div className="catalyst-list row">
+        {groupB.map(catalyst => <Catalyst key={catalyst.currencyTypeName} catalyst={catalyst} />)}
+        <div className="catalyst-spacer" style={{width: '8rem'}}></div>
+        {groupC.map(catalyst => <Catalyst key={catalyst.currencyTypeName} catalyst={catalyst} />)}
+        
       </div>
     </>
   );

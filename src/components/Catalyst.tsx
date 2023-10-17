@@ -11,15 +11,21 @@ export const Catalyst = (props: CatalystProps) => {
   const iconSrc = catalystIconMap[catalyst.detailsId];
 
   return (
-    <div className="catalyst row">
-      <div className="icon">
-        <img src={iconSrc} aria-hidden />
-      </div>
-      <div className="name">
-        {catalyst.currencyTypeName}
-      </div>
-      <div className="price">
-        <ChaosOrbPrice price={catalyst.chaosEquivalent}/>
+    <div className="catalyst">
+      <div className="tooltip-host row">
+        <div className="icon icon-cell cell-large">
+          <img src={iconSrc} aria-hidden />
+          <div className="scrim">
+            <div className="price">
+              <ChaosOrbPrice price={catalyst.chaosEquivalent}/>
+            </div>
+          </div>
+        </div>
+        <div className="tooltip">
+          <div className="name">
+            {catalyst.currencyTypeName}
+          </div>
+        </div>
       </div>
     </div>
   );

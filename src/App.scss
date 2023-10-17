@@ -179,3 +179,20 @@
 .upgrade--equiv {
   background-color: rgba(0, 213, 0, 0.4);
 }
+
+.tooltip {
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+  z-index: 1;
+  background-color: rgba(0,0,0,0.8);
+  width: 20rem;
+  display: none;
+}
+
+.tooltip-host {
+  position: relative;
+  &:hover .tooltip {
+    display: flex;
+  }
+}

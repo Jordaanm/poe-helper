@@ -2,12 +2,11 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  width: 33%;
-  min-width: 20rem;
 }
 
 .catalyst-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
