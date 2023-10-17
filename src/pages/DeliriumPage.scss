@@ -1,0 +1,17 @@
+.delirium-orb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .delirium-orb {
+    display: flex;
+    gap: 2rem;
+    .name {
+      width: 15rem;
+      text-align: left;
+    }
+    flex-direction: row;
+    align-items: center;
+  }
+}
+

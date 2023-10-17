@@ -44,3 +44,10 @@ export interface PoeNinjaPriceResponse {
   lines: PriceDetail[];
   currencyDetails: CurrencyDetail[];
 }
+
+export interface PoeNinjaOverviewLine {
+  id: number,
+  name: string,
+  icon: string, 
+  chaosValue: number,
+}
