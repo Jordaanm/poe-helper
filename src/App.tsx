@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import { Catalysts } from "./pages/Catalysts";
 import { Link } from "react-router-dom";
 import { Challenges } from "./pages/Challenges";
+import { ScarabsPage } from "./pages/Scarabs";
 
 interface PageDatum {
   title: string;
@@ -18,7 +19,7 @@ const pageData: PageDatum[] = [
   {
     title: 'Home',
     path: '/',
-    icon: '',
+    icon: '/hideout.png',
     element: <Home />
   },
   {
@@ -30,7 +31,7 @@ const pageData: PageDatum[] = [
   {
     title: 'Challenges',
     path: '/challenges',
-    icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Challenge_Icon.svg/819px-Challenge_Icon.svg.png',
+    icon: '/challenge.png',
     element: <Challenges />
   },
   {
@@ -55,7 +56,7 @@ const pageData: PageDatum[] = [
     title: 'Scarabs',
     path: '/scarabs',
     icon: 'https://web.poecdn.com/image/Art/2DItems/Currency/Scarabs/GreaterScarabBreach.png?scale=1&scaleIndex=0&w=1&h=1',
-    element: <Home />
+    element: <ScarabsPage />
   },
 ]
 
